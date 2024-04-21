@@ -4,6 +4,8 @@ import pygame.image
 
 
 class Player(object):
+    """The class representing a character controlled by the player."""
+
     def __init__(self, sw, sh, image):
         # Initialize player properties
         self.img = image  # Player image
@@ -33,11 +35,15 @@ class Player(object):
         )  # Position of player head
 
     def draw(self, win):
-        # Draw the player on the screen
+        """Draw the player on the screen.
+
+        Args:
+            win: target window.
+        """
         win.blit(self.rotatedSurf, self.rotatedRect)
 
     def rotate(self):
-        # Rotate the player image surface and update the rectangular area and head position
+        """Rotate the player image surface and update the rectangular area and head position."""
         self.rotatedSurf = pygame.transform.rotate(self.img, self.angle)
         self.rotatedRect = self.rotatedSurf.get_rect()
         self.rotatedRect.center = (self.x, self.y)
@@ -48,16 +54,24 @@ class Player(object):
             self.y - self.sine * self.h // 2,
         )
 
-    def turn(self, direction):
-        # Turn the player left or right by 5 degrees and update rotation
+    def turn(self, direction: str):
+        """Turn the player `left` or `right` by ``5`` degrees and update rotation.
+
+        Args:
+            direction: rotation direction.
+        """
         if direction == "left":
             self.angle += 5
         elif direction == "right":
             self.angle -= 5
         self.rotate()
 
-    def move(self, direction):
-        # Move the player forward or backward based on its direction and update rotation
+    def move(self, direction: str):
+        """Move the player `forward` or `backward` based on its direction and update rotation.
+
+        Args:
+            direction: movment direction.
+        """
         if direction == "forward":
             self.x += self.cosine * 6
             self.y -= self.sine * 6
@@ -67,7 +81,7 @@ class Player(object):
         self.rotate()
 
     def updateLocation(self):
-        # Update player's location if it goes beyond screen boundaries
+        """Update player's location if it goes beyond screen boundaries."""
         if self.x > self.sw + 50:
             self.x = 0
         elif self.x < 0 - self.w:

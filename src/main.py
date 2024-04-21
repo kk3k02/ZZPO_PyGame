@@ -5,8 +5,6 @@ from src.enemyBullet import *
 from src.player import *
 from src.virus import *
 
-IMAGES_PATH = "./images/"
-SOUNDS_PATH = "./sounds/"
 
 class Game:
     def __init__(self):
@@ -28,7 +26,6 @@ class Game:
         self.asteroids_pics = [self.asteroid50, self.asteroid100, self.asteroid150]
 
         # Sounds settings
-        pygame.mixer.init()
         self.shoot = pygame.mixer.Sound("./sounds/shoot.wav")
         self.bangLargeSound = pygame.mixer.Sound("./sounds/bangLarge.wav")
         self.bangSmallSound = pygame.mixer.Sound("./sounds/bangSmall.wav")
@@ -65,7 +62,7 @@ class Game:
         self.backgroundSound.play()
 
     def redrawGameWindow(self):
-        """Draw game window."""
+        """Re-draw game window."""
         self.win.blit(self.background, (0, 0))
         font = pygame.font.SysFont("arial", 40)
         livesText = font.render("Lives: " + str(self.lives), 1, (0, 0, 0))
@@ -115,6 +112,7 @@ class Game:
         pygame.display.update()
 
     def run(self):
+        """Main game loop."""
         run = True
         while run:
             self.clock.tick(60)
@@ -338,5 +336,6 @@ class Game:
         pygame.quit()
 
 
-game = Game()
-game.run()
+if __name__ == "__main__":
+    game = Game()
+    game.run()
