@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "zzpo-pygame"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pygame = "^2.5.2"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.13.2"
+black = "^23.12.1"
+mypy = "^1.8.0"
+pylint = "^3.0.3"
+flake8 = "^6.1.0"
+taskipy = "^1.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.taskipy.settings]
+use_vars = true
+
+[tool.taskipy.variables]
+main_package = "src"
+
+[tool.taskipy.tasks]
+formatting = "python -m black . && python -m isort ."
+pylint = "pylint {main_package}"
+mypy = "python -m mypy --namespace-packages {main_package}"
+flake8 = "poetry run python -m flake8 {main_package} && echo All is ok"

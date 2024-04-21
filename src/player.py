@@ -14,12 +14,23 @@ class Player(object):
         self.x = sw // 2  # Initial x-coordinate of the player (centered)
         self.y = sh // 2  # Initial y-coordinate of the player (centered)
         self.angle = 0  # Initial angle of rotation
-        self.rotatedSurf = pygame.transform.rotate(self.img, self.angle)  # Rotated player image surface
-        self.rotatedRect = self.rotatedSurf.get_rect()  # Rectangular area of the rotated player image
+        self.rotatedSurf = pygame.transform.rotate(
+            self.img, self.angle
+        )  # Rotated player image surface
+        self.rotatedRect = (
+            self.rotatedSurf.get_rect()
+        )  # Rectangular area of the rotated player image
         self.rotatedRect.center = (self.x, self.y)  # Center of the rotated player image
-        self.cosine = math.cos(math.radians(self.angle + 90))  # Cosine of the angle (used for direction calculation)
-        self.sine = math.sin(math.radians(self.angle + 90))  # Sine of the angle (used for direction calculation)
-        self.head = (self.x + self.cosine * self.w // 2, self.y - self.sine * self.h // 2)  # Position of player head
+        self.cosine = math.cos(
+            math.radians(self.angle + 90)
+        )  # Cosine of the angle (used for direction calculation)
+        self.sine = math.sin(
+            math.radians(self.angle + 90)
+        )  # Sine of the angle (used for direction calculation)
+        self.head = (
+            self.x + self.cosine * self.w // 2,
+            self.y - self.sine * self.h // 2,
+        )  # Position of player head
 
     def draw(self, win):
         # Draw the player on the screen
@@ -32,22 +43,25 @@ class Player(object):
         self.rotatedRect.center = (self.x, self.y)
         self.cosine = math.cos(math.radians(self.angle + 90))
         self.sine = math.sin(math.radians(self.angle + 90))
-        self.head = (self.x + self.cosine * self.w // 2, self.y - self.sine * self.h // 2)
+        self.head = (
+            self.x + self.cosine * self.w // 2,
+            self.y - self.sine * self.h // 2,
+        )
 
     def turn(self, direction):
         # Turn the player left or right by 5 degrees and update rotation
-        if direction == 'left':
+        if direction == "left":
             self.angle += 5
-        elif direction == 'right':
+        elif direction == "right":
             self.angle -= 5
         self.rotate()
 
     def move(self, direction):
         # Move the player forward or backward based on its direction and update rotation
-        if direction == 'forward':
+        if direction == "forward":
             self.x += self.cosine * 6
             self.y -= self.sine * 6
-        elif direction == 'backward':
+        elif direction == "backward":
             self.x -= self.cosine * 6
             self.y += self.sine * 6
         self.rotate()
