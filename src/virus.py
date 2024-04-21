@@ -26,8 +26,18 @@ class Virus(object):
         self.h = 50 * rank
 
         # Randomize initial position
-        self.ranPoint = random.choice([(random.randrange(0, sw - self.w), random.choice([-1 * self.h - 5, sh + 5])),
-                                       (random.choice([-1 * self.w - 5, sw + 5]), random.randrange(0, sh - self.h))])
+        self.ranPoint = random.choice(
+            [
+                (
+                    random.randrange(0, sw - self.w),
+                    random.choice([-1 * self.h - 5, sh + 5]),
+                ),
+                (
+                    random.choice([-1 * self.w - 5, sw + 5]),
+                    random.randrange(0, sh - self.h),
+                ),
+            ]
+        )
         self.x, self.y = self.ranPoint
 
         # Determine initial direction based on position
