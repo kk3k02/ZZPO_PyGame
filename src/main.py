@@ -30,14 +30,14 @@ class Game:
         self.asteroids_pics = [self.asteroid50, self.asteroid100, self.asteroid150]
 
         # Sounds settings
-        # self.shoot = pygame.mixer.Sound("./sounds/shoot.wav")
-        # self.bangLargeSound = pygame.mixer.Sound("./sounds/bangLarge.wav")
-        # self.bangSmallSound = pygame.mixer.Sound("./sounds/bangSmall.wav")
-        # self.backgroundSound = pygame.mixer.Sound("./sounds/background.wav")
-        # self.shoot.set_volume(0.25)
-        # self.bangLargeSound.set_volume(0.25)
-        # self.bangSmallSound.set_volume(0.25)
-        # self.backgroundSound.set_volume(0.20)
+        self.shoot = pygame.mixer.Sound("./sounds/shoot.wav")
+        self.bangLargeSound = pygame.mixer.Sound("./sounds/bangLarge.wav")
+        self.bangSmallSound = pygame.mixer.Sound("./sounds/bangSmall.wav")
+        self.backgroundSound = pygame.mixer.Sound("./sounds/background.wav")
+        self.shoot.set_volume(0.25)
+        self.bangLargeSound.set_volume(0.25)
+        self.bangSmallSound.set_volume(0.25)
+        self.backgroundSound.set_volume(0.20)
 
         # Set window caption and create window
         pygame.display.set_caption("Asteroids")
@@ -50,7 +50,7 @@ class Game:
         self.score = 0
         self.rapidFire = False
         self.rfStart = -1
-        self.isSoundOn = False
+        self.isSoundOn = True
         self.highScore = 0
 
         # Initialize game objects
