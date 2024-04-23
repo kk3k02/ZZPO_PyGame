@@ -16,6 +16,9 @@ mypy = "^1.8.0"
 pylint = "^3.0.3"
 flake8 = "^6.1.0"
 taskipy = "^1.12.0"
+mkdocs = "^1.5.3"
+mkdocs-material = "^9.4.14"
+mkdocstrings-python = "^1.7.5"
 
 [build-system]
 requires = ["poetry-core"]
@@ -32,3 +35,4 @@ formatting = "python -m black . && python -m isort ."
 pylint = "pylint {main_package}"
 mypy = "python -m mypy --namespace-packages {main_package}"
 flake8 = "poetry run python -m flake8 {main_package} && echo All is ok"
+docs = "mkdocs build --strict --verbose --site-dir html"
