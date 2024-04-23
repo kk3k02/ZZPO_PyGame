@@ -1,13 +1,17 @@
-from src.bullet import *
-from src.cell import *
-from src.enemy import *
-from src.enemyBullet import *
-from src.player import *
-from src.virus import *
+import random
+
+import pygame
+
+from src.bullet import Bullet
+from src.cell import Cell
+from src.enemy import Enemy
+from src.enemyBullet import EnemyBullet
+from src.player import Direction, Player
+from src.virus import Virus
 
 
 class Game:
-    def __init__(self):
+    def __init__(self) -> None:
         # Initialize Pygame
         pygame.init()
 
@@ -26,14 +30,14 @@ class Game:
         self.asteroids_pics = [self.asteroid50, self.asteroid100, self.asteroid150]
 
         # Sounds settings
-        self.shoot = pygame.mixer.Sound("./sounds/shoot.wav")
-        self.bangLargeSound = pygame.mixer.Sound("./sounds/bangLarge.wav")
-        self.bangSmallSound = pygame.mixer.Sound("./sounds/bangSmall.wav")
-        self.backgroundSound = pygame.mixer.Sound("./sounds/background.wav")
-        self.shoot.set_volume(0.25)
-        self.bangLargeSound.set_volume(0.25)
-        self.bangSmallSound.set_volume(0.25)
-        self.backgroundSound.set_volume(0.20)
+        # self.shoot = pygame.mixer.Sound("./sounds/shoot.wav")
+        # self.bangLargeSound = pygame.mixer.Sound("./sounds/bangLarge.wav")
+        # self.bangSmallSound = pygame.mixer.Sound("./sounds/bangSmall.wav")
+        # self.backgroundSound = pygame.mixer.Sound("./sounds/background.wav")
+        # self.shoot.set_volume(0.25)
+        # self.bangLargeSound.set_volume(0.25)
+        # self.bangSmallSound.set_volume(0.25)
+        # self.backgroundSound.set_volume(0.20)
 
         # Set window caption and create window
         pygame.display.set_caption("Asteroids")
@@ -46,22 +50,22 @@ class Game:
         self.score = 0
         self.rapidFire = False
         self.rfStart = -1
-        self.isSoundOn = True
+        self.isSoundOn = False
         self.highScore = 0
 
         # Initialize game objects
         self.player = Player(self.sw, self.sh, self.playerShip)
-        self.playerBullets = []
-        self.asteroids = []
+        self.playerBullets: list[Bullet] = []
+        self.asteroids: list[Virus] = []
         self.count = 0
-        self.stars = []
-        self.aliens = []
-        self.alienBullets = []
+        self.stars: list[Cell] = []
+        self.aliens: list[Enemy] = []
+        self.alienBullets: list[EnemyBullet] = []
 
         # Start background music
-        self.backgroundSound.play()
+        # self.backgroundSound.play()
 
-    def redrawGameWindow(self):
+    def redrawGameWindow(self) -> None:
         """Re-draw game window."""
         self.win.blit(self.background, (0, 0))
         font = pygame.font.SysFont("arial", 40)
@@ -111,7 +115,7 @@ class Game:
         )
         pygame.display.update()
 
-    def run(self):
+    def run(self) -> None:
         """Main game loop."""
         run = True
         while run:
@@ -119,6 +123,7 @@ class Game:
             self.count += 1
             if not self.gameover:
                 # Game logic
+
                 if self.count % 50 == 0:
                     ran = random.choice([1, 1, 1, 2, 2, 3])
                     self.asteroids.append(
@@ -128,64 +133,71 @@ class Game:
                     self.stars.append(Cell(self.sw, self.sh, self.cell))
                 if self.count % 750 == 0:
                     self.aliens.append(Enemy(self.sw, self.sh, self.alienShip))
-                for i, a in enumerate(self.aliens):
-                    a.x += a.xv
-                    a.y += a.yv
+
+                for enemy in self.aliens:
+                    enemy.x += enemy.xv
+                    enemy.y += enemy.yv
                     if (
-                        a.x > self.sw + 150
-                        or a.x + a.w < -100
-                        or a.y > self.sh + 150
-                        or a.y + a.h < -100
+                        enemy.x > self.sw + 150
+                        or enemy.x + enemy.w < -100
+                        or enemy.y > self.sh + 150
+                        or enemy.y + enemy.h < -100
                     ):
-                        self.aliens.pop(i)
+                        self.aliens.remove(enemy)
                     if self.count % 60 == 0:
                         self.alienBullets.append(
-                            EnemyBullet(self.player, a.x + a.w // 2, a.y + a.h // 2)
+                            EnemyBullet(
+                                self.player,
+                                enemy.x + enemy.w // 2,
+                                enemy.y + enemy.h // 2,
+                            )
                         )
 
                     for b in self.playerBullets:
-                        if (a.x <= b.x <= a.x + a.w) or a.x <= b.x + b.w <= a.x + a.w:
+                        if (
+                            enemy.x <= b.x <= enemy.x + enemy.w
+                        ) or enemy.x <= b.x + b.w <= enemy.x + enemy.w:
                             if (
-                                a.y <= b.y <= a.y + a.h
-                            ) or a.y <= b.y + b.h <= a.y + a.h:
-                                self.aliens.pop(i)
+                                enemy.y <= b.y <= enemy.y + enemy.h
+                            ) or enemy.y <= b.y + b.h <= enemy.y + enemy.h:
+                                self.aliens.remove(enemy)
                                 if self.isSoundOn:
                                     self.bangLargeSound.play()
                                 self.score += 50
                                 break
 
-                for i, b in enumerate(self.alienBullets):
-                    b.x += b.xv
-                    b.y += b.yv
+                for enemyBullet in self.alienBullets:
+                    enemyBullet.x += enemyBullet.xv
+                    enemyBullet.y += enemyBullet.yv
                     if (
                         (
                             self.player.x - self.player.w // 2
-                            <= b.x
+                            <= enemyBullet.x
                             <= self.player.x + self.player.w // 2
                         )
                         or self.player.x - self.player.w // 2
-                        <= b.x + b.w
+                        <= enemyBullet.x + enemyBullet.w
                         <= self.player.x + self.player.w // 2
                     ):
                         if (
                             (
                                 self.player.y - self.player.h // 2
-                                <= b.y
+                                <= enemyBullet.y
                                 <= self.player.y + self.player.h // 2
                             )
                             or self.player.y - self.player.h // 2
-                            <= b.y + b.h
+                            <= enemyBullet.y + enemyBullet.h
                             <= self.player.y + self.player.h // 2
                         ):
                             self.lives -= 1
-                            self.alienBullets.pop(i)
+                            self.alienBullets.remove(enemyBullet)
                             break
 
                 self.player.updateLocation()
                 for b in self.playerBullets:
                     b.move()
                     if b.checkOffScreen():
-                        self.playerBullets.pop(self.playerBullets.index(b))
+                        self.playerBullets.remove(b)
 
                 for a in self.asteroids:
                     a.x += a.xv
@@ -210,16 +222,18 @@ class Game:
                             <= self.player.y + self.player.h // 2
                         ):
                             self.lives -= 1
-                            self.asteroids.pop(self.asteroids.index(a))
+                            self.asteroids.remove(a)
                             if self.isSoundOn:
                                 self.bangLargeSound.play()
                             break
 
-                    for b in self.playerBullets:
-                        if (a.x <= b.x <= a.x + a.w) or a.x <= b.x + b.w <= a.x + a.w:
+                    for bullet in self.playerBullets:
+                        if (
+                            a.x <= bullet.x <= a.x + a.w
+                        ) or a.x <= bullet.x + bullet.w <= a.x + a.w:
                             if (
-                                a.y <= b.y <= a.y + a.h
-                            ) or a.y <= b.y + b.h <= a.y + a.h:
+                                a.y <= bullet.y <= a.y + a.h
+                            ) or a.y <= bullet.y + bullet.h <= a.y + a.h:
                                 if a.rank == 3:
                                     if self.isSoundOn:
                                         self.bangLargeSound.play()
@@ -256,8 +270,8 @@ class Game:
                                     self.score += 30
                                     if self.isSoundOn:
                                         self.bangSmallSound.play()
-                                self.asteroids.pop(self.asteroids.index(a))
-                                self.playerBullets.pop(self.playerBullets.index(b))
+                                self.asteroids.remove(a)
+                                self.playerBullets.remove(bullet)
                                 break
 
                 for s in self.stars:
@@ -269,7 +283,7 @@ class Game:
                         or s.y > self.sh + 100
                         or s.y < -100 - s.h
                     ):
-                        self.stars.pop(self.stars.index(s))
+                        self.stars.remove(s)
                         break
                     for b in self.playerBullets:
                         if (s.x <= b.x <= s.x + s.w) or s.x <= b.x + b.w <= s.x + s.w:
@@ -278,7 +292,7 @@ class Game:
                             ) or s.y <= b.y + b.h <= s.y + s.h:
                                 self.rapidFire = True
                                 self.rfStart = self.count
-                                self.stars.pop(self.stars.index(s))
+                                self.stars.remove(s)
                                 self.playerBullets.pop(self.playerBullets.index(b))
                                 break
 
@@ -292,13 +306,13 @@ class Game:
 
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_LEFT]:
-                    self.player.turn("left")
+                    self.player.turn(Direction.LEFT)
                 if keys[pygame.K_RIGHT]:
-                    self.player.turn("right")
+                    self.player.turn(Direction.RIGHT)
                 if keys[pygame.K_UP]:
-                    self.player.move("forward")
+                    self.player.move(Direction.FORWARD)
                 if keys[pygame.K_DOWN]:
-                    self.player.move("backward")
+                    self.player.move(Direction.BACKWARD)
                 if keys[pygame.K_SPACE]:
                     if self.rapidFire:
                         self.playerBullets.append(Bullet(self.sw, self.sh, self.player))

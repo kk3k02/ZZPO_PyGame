@@ -1,9 +1,11 @@
 import pygame
+from pygame.surface import Surface
+
+from src.player import Player
 
 
-class Bullet(object):
-    def __init__(self, sw, sh, player):
-        # Initialize bullet properties
+class Bullet:
+    def __init__(self, sw: float, sh: float, player: Player) -> None:
         self.sw = sw  # Screen width
         self.sh = sh  # Screen height
         self.point = (
@@ -21,12 +23,12 @@ class Bullet(object):
         self.xv = self.c * 10  # Horizontal velocity of the bullet
         self.yv = self.s * 10  # Vertical velocity of the bullet
 
-    def move(self):
-        # Move the bullet according to its velocity
+    def move(self) -> None:
+        """Move the bullet according to its velocity."""
         self.x += self.xv
         self.y -= self.yv  # Subtracting yv since y-axis is inverted in pygame
 
-    def draw(self, win):
+    def draw(self, win: Surface) -> None:
         # Draw the bullet on the screen
         pygame.draw.circle(
             win,
@@ -36,7 +38,12 @@ class Bullet(object):
         )
         # Draw a circle representing the bullet with white color
 
-    def checkOffScreen(self):
-        # Check if the bullet is off the screen
+    def checkOffScreen(self) -> bool:
+        """Check if the bullet is off the screen.
+
+        Returns:
+            True if bullet is off the screen.
+        """
         if self.x < -50 or self.x > self.sw or self.y > self.sh or self.y < -50:
-            return True  # If bullet is off the screen, return True
+            return True
+        return False

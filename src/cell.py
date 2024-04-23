@@ -1,12 +1,13 @@
 import random
 
+from pygame.surface import Surface
 
-class Cell(object):
-    def __init__(self, sw, sh, image):
-        # Initialize cell properties
-        self.img = image  # Image of the cell
-        self.w = self.img.get_width()  # Width of the cell image
-        self.h = self.img.get_height()  # Height of the cell image
+from src.object import GameObject
+
+
+class Cell(GameObject):
+    def __init__(self, sw: int, sh: int, image: Surface):
+        super().__init__(sw, sh, image)
 
         # Generate a random starting point for the cell
         self.ranPoint = random.choice(
@@ -42,6 +43,10 @@ class Cell(object):
         self.xv = self.x_dir * 2  # Horizontal velocity of the cell
         self.yv = self.y_dir * 2  # Vertical velocity of the cell
 
-    def draw(self, win):
-        # Draw the cell on the screen
+    def draw(self, win: Surface) -> None:
+        """Draw the cell on the screen.
+
+        Args:
+            win: target window.
+        """
         win.blit(self.img, (self.x, self.y))

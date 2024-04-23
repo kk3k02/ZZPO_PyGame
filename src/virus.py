@@ -1,10 +1,14 @@
 import random
 
+from pygame.surface import Surface
 
-class Virus(object):
-    def __init__(self, sw, sh, rank, images):
-        """
-        Initialize a virus object.
+from src.object import GameObject
+
+
+class Virus(GameObject):
+    def __init__(self, sw: int, sh: int, rank: int, images: list[Surface]) -> None:
+        super().__init__(sw, sh, images[0])
+        """Initialize a virus object.
 
         Args:
             sw (int): Screen width.
@@ -54,9 +58,8 @@ class Virus(object):
         self.xv = self.x_dir * random.randrange(1, 3)
         self.yv = self.y_dir * random.randrange(1, 3)
 
-    def draw(self, win):
-        """
-        Draw the virus on the window.
+    def draw(self, win: Surface) -> None:
+        """Draw the virus on the window.
 
         Args:
             win: Pygame window surface.

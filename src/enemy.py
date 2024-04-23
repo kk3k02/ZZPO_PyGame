@@ -1,12 +1,13 @@
 import random
 
+from pygame.surface import Surface
 
-class Enemy(object):
-    def __init__(self, sw, sh, image):
-        # Initialize enemy properties
-        self.img = image  # Image of the enemy
-        self.w = self.img.get_width()  # Width of the enemy image
-        self.h = self.img.get_height()  # Height of the enemy image
+from src.object import GameObject
+
+
+class Enemy(GameObject):
+    def __init__(self, sw: int, sh: int, image: Surface) -> None:
+        super().__init__(sw, sh, image)
 
         # Generate a random starting point for the enemy
         self.ranPoint = random.choice(
@@ -42,6 +43,6 @@ class Enemy(object):
         self.xv = self.x_dir * 2  # Horizontal velocity of the enemy
         self.yv = self.y_dir * 2  # Vertical velocity of the enemy
 
-    def draw(self, win):
+    def draw(self, win: Surface) -> None:
         # Draw the enemy on the screen
         win.blit(self.img, (self.x, self.y))
