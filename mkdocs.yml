@@ -17,8 +17,14 @@ theme:
 
 nav:
   - Home: 'index.md'
+  - Dokumentacja kodu: 'docs.md'
   - API Reference:
     - Player: 'api_reference/player_reference.md'
+    - Virus: 'api_reference/virus_reference.md'
+    - Cell: 'api_reference/cell_reference.md'
+    - Enemy: 'api_reference/enemy_reference.md'
+    - Enemy Bullet: 'api_reference/enemy_bullet_reference.md'
+    - Bullet: 'api_reference/bullet_reference.md'
 
 plugins:
   - search
