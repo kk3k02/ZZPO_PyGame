@@ -20,7 +20,8 @@ nav:
   - Dokumentacja kodu: 'docs.md'
   - Biblioteka PyGame: 'pygame.md'
   - Opis implementacji: 'implementation_descr.md'
-  - Diagram klas: 'class_diagram.md'
+  - Diagramy: 'diagrams.md'
+  - Uruchomienie Projektu: 'run.md'
   - API Reference:
     - Player: 'api_reference/player_reference.md'
     - Virus: 'api_reference/virus_reference.md'
@@ -32,6 +33,7 @@ nav:
 plugins:
   - search
   - mkdocstrings
+  - plantuml-colocator
 
 markdown_extensions:
   - admonition
