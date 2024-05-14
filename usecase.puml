@@ -1,0 +1,25 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor Gracz as P
+rectangle "Gra" {
+    usecase "Uruchomienie gry" as UC1
+    usecase "Rozpoczęcie nowej gry" as UC2
+    usecase "Sterowanie postacią" as UC3
+    usecase "Zbieranie obiektów" as UC4
+    usecase "Unikanie przeciwników" as UC5
+    usecase "Strzelanie do przeciwników" as UC6
+    usecase "Zakończenie gry" as UC7
+}
+
+P --> UC1 : uruchamia plik main.py
+P --> UC2 : Wybiera opcję Start
+P --> UC3 : Naciska klawisze strzałek
+P --> UC4 : Porusza się w kierunku obiektu
+P --> UC5 : Porusza się unikając przeciwników
+P --> UC6 : Naciska spację, aby strzelić
+P --> UC7 : Zderza się z przeciwnikiem i traci życie
+
+@enduml
