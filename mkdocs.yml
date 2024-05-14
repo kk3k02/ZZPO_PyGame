@@ -19,6 +19,8 @@ nav:
   - Home: 'index.md'
   - Dokumentacja kodu: 'docs.md'
   - Biblioteka PyGame: 'pygame.md'
+  - Opis implementacji: 'implementation_descr.md'
+  - Diagram klas: 'class_diagram.md'
   - API Reference:
     - Player: 'api_reference/player_reference.md'
     - Virus: 'api_reference/virus_reference.md'
