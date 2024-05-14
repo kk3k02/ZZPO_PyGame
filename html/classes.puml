@@ -1,0 +1,133 @@
+@startuml classes
+set namespaceSeparator none
+class "Bullet" as src.bullet.Bullet {
+  c
+  h : int
+  point
+  s
+  sh : float
+  sw : float
+  w : int
+  x
+  xv
+  y
+  yv
+  checkOffScreen() -> bool
+  draw(win: Surface) -> None
+  move() -> None
+}
+class "Cell" as src.cell.Cell {
+  ranPoint
+  x
+  x_dir : int
+  xv : int
+  y
+  y_dir : int
+  yv : int
+  draw(win: Surface) -> None
+}
+class "Direction" as src.player.Direction {
+  name
+}
+class "Enemy" as src.enemy.Enemy {
+  ranPoint
+  x
+  x_dir : int
+  xv : int
+  y
+  y_dir : int
+  yv : int
+  draw(win: Surface) -> None
+}
+class "EnemyBullet" as src.enemyBullet.EnemyBullet {
+  dist
+  dx
+  dy
+  h : float
+  w : float
+  x : float
+  xv
+  y : float
+  yv
+  draw(win: Surface) -> None
+}
+class "Game" as src.main.Game {
+  alienBullets : list[EnemyBullet]
+  alienShip
+  aliens : list[Enemy]
+  asteroid100
+  asteroid150
+  asteroid50
+  asteroids : list[Virus]
+  asteroids_pics : list
+  background
+  backgroundSound
+  bangLargeSound
+  bangSmallSound
+  cell
+  clock
+  count : int
+  gameover : bool
+  highScore : int
+  isSoundOn : bool
+  lives : int
+  player
+  playerBullets : list[Bullet]
+  playerShip
+  rapidFire : bool
+  rfStart : int
+  score : int
+  sh : int
+  shoot
+  stars : list[Cell]
+  sw : int
+  win
+  redrawGameWindow() -> None
+  run() -> None
+}
+class "GameObject" as src.object.GameObject {
+  h
+  img
+  sh : int
+  sw : int
+  w
+  {abstract}draw(win: Surface) -> None
+}
+class "Player" as src.player.Player {
+  angle : int
+  cosine
+  head : tuple
+  rotatedRect
+  rotatedSurf
+  sine
+  x : int
+  y : int
+  draw(win: Surface) -> None
+  move(direction: Direction) -> None
+  rotate() -> None
+  turn(direction: Direction) -> None
+  updateLocation() -> None
+}
+class "Virus" as src.virus.Virus {
+  h
+  image
+  ranPoint
+  rank : int
+  w
+  x
+  x_dir : int
+  xv
+  y
+  y_dir : int
+  yv
+  draw(win: Surface) -> None
+}
+src.cell.Cell --|> src.object.GameObject
+src.enemy.Enemy --|> src.object.GameObject
+src.player.Player --|> src.object.GameObject
+src.virus.Virus --|> src.object.GameObject
+src.bullet.Bullet --|> src.object.GameObject
+src.enemyBullet.EnemyBullet --|> src.object.GameObject
+src.player.Player --* src.main.Game : player
+src.player.Direction --* src.player.Player : direction
+@enduml

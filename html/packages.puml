@@ -1,0 +1,33 @@
+@startuml packages
+set namespaceSeparator none
+package "src" as src {
+}
+package "src.bullet" as src.bullet {
+}
+package "src.cell" as src.cell {
+}
+package "src.enemy" as src.enemy {
+}
+package "src.enemyBullet" as src.enemyBullet {
+}
+package "src.main" as src.main {
+}
+package "src.object" as src.object {
+}
+package "src.player" as src.player {
+}
+package "src.virus" as src.virus {
+}
+src.bullet --> src.player
+src.cell --> src.object
+src.enemy --> src.object
+src.enemyBullet --> src.player
+src.main --> src.bullet
+src.main --> src.cell
+src.main --> src.enemy
+src.main --> src.enemyBullet
+src.main --> src.player
+src.main --> src.virus
+src.player --> src.object
+src.virus --> src.object
+@enduml
