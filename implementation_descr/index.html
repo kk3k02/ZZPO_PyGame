@@ -1,0 +1,1001 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../pygame/">
+      
+      
+        <link rel="next" href="../class_diagram/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>Opis implementacji - ZZPO Project documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#opis-implementacji-gry" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ZZPO Project documentation" class="md-header__button md-logo" aria-label="ZZPO Project documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ZZPO Project documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Opis implementacji
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ZZPO Project documentation" class="md-nav__button md-logo" aria-label="ZZPO Project documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    ZZPO Project documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dokumentacja kodu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pygame/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Biblioteka PyGame
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Opis implementacji
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Opis implementacji
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#struktura-projektu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Struktura Projektu
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inicjalizacja-gry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicjalizacja Gry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gowna-petla-gry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Główna Pętla Gry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moduy-gry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Moduły Gry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inne-komponenty-gry-reprezentujace-rozne-obiekty-i-ich-interakcje" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inne komponenty gry, reprezentujące różne obiekty i ich interakcje
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inne komponenty gry, reprezentujące różne obiekty i ich interakcje">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#klasa-cell-cellpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Klasa Cell (cell.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#klasa-virus-viruspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Klasa Virus (virus.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#klasa-gameobject-objectpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Klasa GameObject (object.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interakcje-i-kolizje" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interakcje i Kolizje
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dzwiek-i-grafika" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dźwięk i Grafika
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dźwięk i Grafika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grafika" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafika
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dzwiek" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dźwięk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#szczegoy-implementacji-dzwiekow-i-grafiki" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szczegóły implementacji dźwięków i grafiki
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#podsumowanie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Podsumowanie
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../class_diagram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diagram klas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API Reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/player_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Player
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/virus_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/cell_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/enemy_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enemy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/enemy_bullet_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enemy Bullet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_reference/bullet_reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bullet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#struktura-projektu" class="md-nav__link">
+    <span class="md-ellipsis">
+      Struktura Projektu
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inicjalizacja-gry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inicjalizacja Gry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gowna-petla-gry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Główna Pętla Gry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#moduy-gry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Moduły Gry
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inne-komponenty-gry-reprezentujace-rozne-obiekty-i-ich-interakcje" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inne komponenty gry, reprezentujące różne obiekty i ich interakcje
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inne komponenty gry, reprezentujące różne obiekty i ich interakcje">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#klasa-cell-cellpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Klasa Cell (cell.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#klasa-virus-viruspy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Klasa Virus (virus.py)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#klasa-gameobject-objectpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Klasa GameObject (object.py)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interakcje-i-kolizje" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interakcje i Kolizje
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dzwiek-i-grafika" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dźwięk i Grafika
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dźwięk i Grafika">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grafika" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grafika
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dzwiek" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dźwięk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#szczegoy-implementacji-dzwiekow-i-grafiki" class="md-nav__link">
+    <span class="md-ellipsis">
+      Szczegóły implementacji dźwięków i grafiki
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#podsumowanie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Podsumowanie
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="opis-implementacji-gry">Opis Implementacji Gry</h1>
+<h2 id="struktura-projektu">Struktura Projektu</h2>
+<p>Projekt jest zorganizowany w modularny sposób, co ułatwia zarządzanie i rozwój kodu. Główne komponenty projektu znajdują się w katalogu <code>src</code> i obejmują następujące pliki:</p>
+<ul>
+<li><code>main.py</code>: Punkt wejściowy do gry, zarządza główną pętlą gry oraz inicjalizacją wszystkich zasobów.</li>
+<li><code>player.py</code>: Definiuje klasę <code>Player</code>, która reprezentuje statek gracza i zarządza jego ruchem oraz interakcjami.</li>
+<li><code>bullet.py</code>: Zawiera logikę pocisków wystrzeliwanych przez gracza.</li>
+<li><code>enemy.py</code>: Definiuje klasę <code>Enemy</code>, reprezentującą przeciwników w grze.</li>
+<li><code>enemyBullet.py</code>: Zawiera logikę pocisków wystrzeliwanych przez przeciwników.</li>
+<li><code>cell.py</code>, <code>virus.py</code>, <code>object.py</code>: Inne komponenty gry, reprezentujące różne obiekty i ich interakcje.</li>
+</ul>
+<h2 id="inicjalizacja-gry">Inicjalizacja Gry</h2>
+<p>Główna klasa gry, <code>Game</code>, jest zdefiniowana w pliku <code>main.py</code>. Podczas inicjalizacji (konstruktor <code>__init__</code>) wykonywane są następujące kroki:</p>
+<ul>
+<li><strong>Inicjalizacja Pygame</strong>: Inicjalizowana jest biblioteka Pygame, co umożliwia tworzenie okna gry i zarządzanie zasobami multimedialnymi.</li>
+<li><strong>Ustawienia ekranu</strong>: Określana jest szerokość i wysokość okna gry (1000x600 pikseli). Ustawiany jest tytuł okna gry.</li>
+<li><strong>Ładowanie zasobów</strong>: Obrazy i dźwięki są ładowane z odpowiednich plików, takich jak tło, statek gracza, przeciwnicy, dźwięki strzałów i eksplozji.</li>
+<li><strong>Inicjalizacja zmiennych gry</strong>: Inicjalizowane są zmienne kontrolujące stan gry, takie jak liczba żyć gracza, wynik, tryb szybkiego strzelania i inne.</li>
+<li><strong>Tworzenie obiektów gry</strong>: Tworzony jest obiekt reprezentujący gracza (<code>Player</code>) oraz listy przechowujące pociski gracza, przeciwników, pociski przeciwników i inne obiekty gry.</li>
+</ul>
+<h2 id="gowna-petla-gry">Główna Pętla Gry</h2>
+<p>Główna pętla gry znajduje się w metodzie <code>run</code> klasy <code>Game</code>. Pętla ta wykonuje następujące zadania:</p>
+<ul>
+<li><strong>Obsługa zdarzeń</strong>: Sprawdzane są zdarzenia generowane przez użytkownika, takie jak zamknięcie okna gry. Reaguje się na naciskanie klawiszy sterujących ruchem gracza.</li>
+<li><strong>Aktualizacja stanu gry</strong>: Pozycje gracza i innych obiektów są aktualizowane na podstawie bieżących danych wejściowych. Aktualizowane są również stany, takie jak wynik i liczba żyć.</li>
+<li><strong>Rysowanie na ekranie</strong>: Wszystkie obiekty gry są rysowane na ekranie w odpowiednich pozycjach. Ekran jest aktualizowany, aby odzwierciedlić zmiany wprowadzone w bieżącej klatce.</li>
+<li><strong>Kontrola FPS</strong>: Ustawiana jest liczba klatek na sekundę (60 FPS), co zapewnia płynność gry.</li>
+</ul>
+<h2 id="moduy-gry">Moduły Gry</h2>
+<p>Każdy moduł zawiera klasy i funkcje odpowiedzialne za specyficzne aspekty gry:</p>
+<ul>
+<li><strong>Klasa <code>Player</code></strong>: Zarządza ruchem statku gracza, jego strzałami oraz kolizjami z innymi obiektami. Ruch gracza jest kontrolowany za pomocą strzałek na klawiaturze. Konstruktor inicjalizuje gracza, ustawia początkową pozycję, kąt obrotu oraz rysuje gracza na ekranie.</li>
+<li><strong>Klasa <code>Bullet</code></strong>: Reprezentuje pociski wystrzeliwane przez gracza. Pociski startują z pozycji głowy gracza i poruszają się zgodnie z kątem obrotu gracza. Klasa zarządza pozycją, ruchem i rysowaniem pocisków oraz sprawdzaniem, czy pocisk znajduje się poza ekranem.</li>
+<li><strong>Klasa <code>Enemy</code></strong>: Reprezentuje przeciwników, którzy pojawiają się na ekranie. Przeciwnicy startują z losowych punktów na krawędziach ekranu i poruszają się w kierunku środka ekranu. Klasa zarządza ruchem, rysowaniem i losowym generowaniem początkowych pozycji przeciwników.</li>
+<li><strong>Klasa <code>EnemyBullet</code></strong>: Zarządza pociskami wystrzeliwanymi przez przeciwników. Pociski zmierzają w stronę gracza, a ich kierunek jest obliczany na podstawie pozycji gracza. Klasa zawiera metody do rysowania pocisków oraz aktualizacji ich pozycji.</li>
+</ul>
+<h2 id="inne-komponenty-gry-reprezentujace-rozne-obiekty-i-ich-interakcje">Inne komponenty gry, reprezentujące różne obiekty i ich interakcje</h2>
+<p>Pliki <code>cell.py</code>, <code>virus.py</code> i <code>object.py</code> zawierają definicje kluczowych obiektów w grze oraz mechanik ich interakcji:</p>
+<h3 id="klasa-cell-cellpy">Klasa <code>Cell</code> (cell.py)</h3>
+<p>Klasa <code>Cell</code> reprezentuje komórki w grze, które są przeszkodami lub celami dla gracza. Główne elementy tej klasy to:</p>
+<ul>
+<li><strong>Inicjalizacja</strong>: Konstruktor ustawia szerokość i wysokość ekranu, obraz reprezentujący komórkę oraz losową pozycję startową na krawędzi ekranu. Komórka może startować z dowolnego miejsca na górnej, dolnej, lewej lub prawej krawędzi ekranu.</li>
+<li><strong>Ruch</strong>: Komórka porusza się w kierunku środka ekranu. Kierunek ruchu jest określany na podstawie początkowej pozycji komórki.</li>
+<li><strong>Rysowanie</strong>: Komórka jest rysowana na ekranie za pomocą obrazu przypisanego do niej w momencie inicjalizacji.</li>
+</ul>
+<h3 id="klasa-virus-viruspy">Klasa <code>Virus</code> (virus.py)</h3>
+<p>Klasa <code>Virus</code> reprezentuje wirusy w grze, które mają różne rankingi wpływające na ich wielkość i obraz. Główne elementy tej klasy to:</p>
+<ul>
+<li><strong>Inicjalizacja</strong>: Konstruktor przyjmuje szerokość i wysokość ekranu, ranking wirusa oraz listę obrazów dla różnych rang wirusów. Na podstawie rankingu wybierany jest odpowiedni obraz i ustawiane są wymiary wirusa. Wirus startuje z losowej pozycji na krawędzi ekranu.</li>
+<li><strong>Ruch</strong>: Kierunek ruchu wirusa jest ustalany na podstawie jego początkowej pozycji. Wirus porusza się w kierunku środka ekranu z losową prędkością.</li>
+<li><strong>Rysowanie</strong>: Wirus jest rysowany na ekranie za pomocą obrazu przypisanego do niego w momencie inicjalizacji.</li>
+</ul>
+<h3 id="klasa-gameobject-objectpy">Klasa <code>GameObject</code> (object.py)</h3>
+<p>Klasa <code>GameObject</code> jest bazową klasą dla innych obiektów w grze, takich jak <code>Player</code>, <code>Enemy</code>, <code>Cell</code> i <code>Virus</code>. Główne elementy tej klasy to:</p>
+<ul>
+<li><strong>Inicjalizacja</strong>: Konstruktor przyjmuje szerokość i wysokość ekranu oraz obraz obiektu. Ustawiane są podstawowe właściwości obiektu, takie jak jego pozycja, szerokość, wysokość oraz obraz.</li>
+<li><strong>Rysowanie</strong>: Metoda <code>draw</code> odpowiada za rysowanie obiektu na ekranie. Każda klasa dziedzicząca po <code>GameObject</code> może nadpisać tę metodę, aby dostosować sposób rysowania obiektu.</li>
+<li><strong>Kolizje</strong>: Klasa <code>GameObject</code> może również zawierać metody do wykrywania kolizji z innymi obiektami. Metody te mogą być wykorzystywane przez klasy pochodne do implementacji specyficznych interakcji między obiektami.</li>
+</ul>
+<h2 id="interakcje-i-kolizje">Interakcje i Kolizje</h2>
+<p>Gra zawiera różne typy interakcji i kolizji:</p>
+<ul>
+<li><strong>Kolizje gracza z przeciwnikami</strong>: Kiedy statek gracza zderzy się z przeciwnikiem, gracz traci życie. Kolizje są wykrywane na podstawie położenia obiektów na ekranie.</li>
+<li><strong>Kolizje pocisków</strong>: Pociski wystrzeliwane przez gracza mogą niszczyć obiekty takie jak <code>Virus</code> lub <code>Enemy</code>. Podobnie, pociski wystrzeliwane przez przeciwników (<code>EnemyBullet</code>) mogą zniszczyć statek gracza. Wykrywanie kolizji pomiędzy pociskami a obiektami opiera się na sprawdzaniu, czy pozycje tych obiektów pokrywają się.</li>
+<li><strong>Kolizje z przeszkodami</strong>: Gracz i przeciwnicy mogą zderzać się z różnymi przeszkodami na planszy, co może wpływać na ich ruch lub prowadzić do ich zniszczenia.</li>
+</ul>
+<h2 id="dzwiek-i-grafika">Dźwięk i Grafika</h2>
+<p>W grze zastosowano różne zasoby multimedialne, które zwiększają jej atrakcyjność i immersję. Przyjrzyjmy się szczegółowo, jakie elementy grafiki są używane i jakie dźwięki towarzyszą poszczególnym akcjom w grze.</p>
+<h3 id="grafika">Grafika</h3>
+<p>Grafika w grze jest używana do reprezentowania różnych obiektów oraz tła. Oto kluczowe elementy graficzne:</p>
+<ul>
+<li><strong>Tło gry (<code>background.png</code>)</strong>: Reprezentuje statyczne tło, na którym toczy się rozgrywka. Jest to obraz przedstawiający przestrzeń kosmiczną, który nadaje grze odpowiedni klimat.</li>
+<li><strong>Statek gracza (<code>ship.png</code>)</strong>: Reprezentuje statek kosmiczny kontrolowany przez gracza. Jest to główny obiekt, którym steruje gracz, unikając przeszkód i strzelając do przeciwników.</li>
+<li><strong>Przeciwnicy (<code>virus2.png</code>)</strong>: Obrazy przeciwników reprezentowane są przez różne wirusy. Przeciwnicy poruszają się po ekranie i stanowią zagrożenie dla gracza.</li>
+<li><strong>Komórki (<code>cell.png</code>)</strong>: Komórki są innymi obiektami w grze, które mogą działać jako przeszkody lub cele. Mają swoje unikalne obrazy, które odróżniają je od innych obiektów.</li>
+<li><strong>Asteroidy (<code>virus1.png</code>, <code>dust1.png</code>, <code>dust2.png</code>)</strong>: Asteroidy to przeszkody w grze, które mogą zderzać się ze statkiem gracza lub przeciwnikami. Są reprezentowane przez różne obrazy, które różnią się rozmiarami i wyglądem.</li>
+</ul>
+<h3 id="dzwiek">Dźwięk</h3>
+<p>Dźwięki w grze są używane do podkreślenia różnych akcji i zdarzeń. Oto główne dźwięki używane w grze:</p>
+<ul>
+<li><strong>Strzał (<code>shoot.wav</code>)</strong>: Ten dźwięk odtwarzany jest za każdym razem, gdy gracz wystrzeli pocisk ze swojego statku. Dźwięk strzału dodaje realizmu i pomaga graczowi lepiej zrozumieć, kiedy został oddany strzał.</li>
+<li><strong>Eksplozje (<code>bangLarge.wav</code>, <code>bangSmall.wav</code>)</strong>: Dźwięki eksplozji są odtwarzane, gdy dochodzi do kolizji, na przykład gdy pocisk gracza trafia w przeciwnika lub gdy statek gracza zostaje zniszczony. <code>bangLarge.wav</code> jest używany dla większych eksplozji, a <code>bangSmall.wav</code> dla mniejszych.</li>
+<li><strong>Muzyka tła (<code>background.wav</code>)</strong>: Odtwarzana jest ciągła muzyka tła, która nadaje grze dynamiczny i angażujący klimat. Pomaga utrzymać gracza w stanie skupienia i podkreśla atmosferę gry.</li>
+<li><strong>Inne dźwięki</strong>: Mogą być używane dodatkowe dźwięki do innych akcji, takich jak zdobywanie punktów, trafianie w przeszkody itp.</li>
+</ul>
+<h3 id="szczegoy-implementacji-dzwiekow-i-grafiki">Szczegóły implementacji dźwięków i grafiki</h3>
+<ul>
+<li><strong>Ładowanie zasobów graficznych</strong>: Obrazy są ładowane z plików w momencie inicjalizacji gry. Każdy obraz jest przypisany do odpowiedniego obiektu, na przykład tło jest przypisane do zmiennej <code>self.background</code>, a obraz statku gracza do <code>self.playerShip</code>.</li>
+<li><strong>Ładowanie zasobów dźwiękowych</strong>: Dźwięki są ładowane z plików i przypisywane do zmiennych. Na przykład, dźwięk strzału jest przypisany do <code>self.shoot</code>, a dźwięk dużej eksplozji do <code>self.bangLargeSound</code>. Ustawiana jest także głośność każdego dźwięku, aby zapewnić odpowiedni balans dźwiękowy w grze.</li>
+<li><strong>Odtwarzanie dźwięków</strong>: Dźwięki są odtwarzane w odpowiednich momentach gry za pomocą funkcji <code>play</code>. Na przykład, dźwięk strzału jest odtwarzany w momencie wystrzału pocisku, a dźwięk eksplozji w momencie kolizji.</li>
+</ul>
+<p>Dzięki zastosowaniu odpowiednich zasobów dźwiękowych i graficznych, gra staje się bardziej realistyczna i angażująca dla gracza. Grafika pomaga w identyfikacji różnych obiektów i ich stanów, a dźwięki wzmacniają wrażenia płynące z rozgrywki, informując gracza o ważnych wydarzeniach w grze.</p>
+<h2 id="podsumowanie">Podsumowanie</h2>
+<p>Projekt jest dobrze zorganizowany i modularny, co pozwala na łatwe zarządzanie kodem oraz jego rozwijanie. Każdy moduł ma jasno określoną odpowiedzialność, co ułatwia debugowanie i wprowadzanie nowych funkcji. Główne funkcje gry są zaimplementowane w sposób przejrzysty i efektywny, zapewniając płynną i angażującą rozgrywkę.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      ZZPO Team
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+    
+  </body>
+</html>
